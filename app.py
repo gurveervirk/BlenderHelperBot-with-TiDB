@@ -40,9 +40,12 @@ def init(hf_api_key):
     return chat_engine, memory
 
 def chat(chat_engine, memory, query):
-    memory.put(ChatMessage.from_str(content=query))
-    response = chat_engine.chat(query).response
-    return response
+    try:
+        memory.put(ChatMessage.from_str(content=query))
+        response = chat_engine.chat(query).response
+        return response
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
 
 # Initialize global variables
 def main():
@@ -56,7 +59,8 @@ def main():
             st.success("HF API key added successfully.")
 
     st.title("💬 Blender Helper Bot")
-
+    st.info("Please make sure you have access to the [mistralai/Mistral-7B-Instruct-v0.3](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3) model from Hugging Face.")
+    
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
 
