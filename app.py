@@ -14,7 +14,7 @@ with open("ca_cert.pem", "w") as cert_file:
 
 def init(hf_api_key):
     Settings.embed_model = HuggingFaceInferenceAPIEmbedding(model_name="mixedbread-ai/mxbai-embed-large-v1", token=hf_api_key)
-    Settings.llm = HuggingFaceInferenceAPI(model_name="mistralai/Mistral-7B-Instruct-v0.3", token=hf_api_key, task="TGI")
+    Settings.llm = HuggingFaceInferenceAPI(model_name="mistralai/Mistral-7B-Instruct-v0.3", token=hf_api_key, task="TGI", num_output=1024, context_window=4096)
     llm = Settings.llm
 
     VECTOR_TABLE_NAME = "default"
