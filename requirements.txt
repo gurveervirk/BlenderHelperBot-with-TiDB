@@ -1,5 +1,5 @@
 transformers== 4.40.1
-mysqlclient==2.2.4
+mysql-connector-python
 llama-index-vector-stores-tidbvector==0.1.2
 llama-index-embeddings-huggingface==0.2.0
 llama-index-llms-huggingface==0.1.5
